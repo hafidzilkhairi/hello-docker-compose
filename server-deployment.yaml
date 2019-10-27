@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/1/./kompose-linux-amd64 convert -f docker-compose.yml
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: server
+  name: server
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: server
+    spec:
+      containers:
+      - image: my-netpro-app:1.0
+        name: server
+        ports:
+        - containerPort: 8000
+        resources: {}
+      restartPolicy: Always
+status: {}
